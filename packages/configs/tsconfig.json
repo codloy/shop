@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "module": "commonjs",
+    "baseUrl": "src"
+  },
+  "include": ["."],
+  "exclude": ["dist", "node_modules", "**/**.spec.ts"]
+}
