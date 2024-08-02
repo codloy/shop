@@ -4,18 +4,18 @@ import { trpc } from '@/lib/trpc/trpc';
 import { useState } from 'react';
 
 export function HomeScreen() {
-  const [room, setRoom] = useState('hey');
+  const [name, setName] = useState('');
+  const [room, setRoom] = useState('');
   const [message, setMessage] = useState('');
+  const [typingName, setTypingName] = useState('');
+  const [typingMessage, setTypingMessage] = useState('');
   const [messages, setMessages] = useState<string[]>([]);
   const addMutation = trpc.addMutation.useMutation();
-  // trpc.randomNumberSubscription.useSubscription(undefined, {
-  //   onData(data) {
-  //     console.log(data);
-  //   },
-  // });
+  const typingMutation = trpc.typingMutation.useMutation();
+
   trpc.addSubscription.useSubscription(
     {
-      chatId: room,
+      room,
     },
     {
       onData(data) {
@@ -24,15 +24,49 @@ export function HomeScreen() {
     }
   );
 
+  trpc.typingSubscription.useSubscription(
+    {
+      room,
+      name,
+      message,
+    },
+    {
+      onData(data) {
+        setTypingName(data.name);
+        setTypingMessage(data.message);
+      },
+    }
+  );
+
   function onAdd() {
-    addMutation.mutate({ chatId: room, message });
+    addMutation.mutate({ room, message, name });
   }
 
   return (
     <div>
-      <input value={room} onChange={e => setRoom(e.target.value)} />
-      <input value={message} onChange={e => setMessage(e.target.value)} />
-      <button onClick={onAdd}>add</button>
+      <input
+        placeholder='Name'
+        value={name}
+        onChange={e => setName(e.target.value)}
+      />
+      <input
+        placeholder='Room'
+        value={room}
+        onChange={e => setRoom(e.target.value)}
+      />
+      <input
+        placeholder='Message'
+        value={message}
+        onChange={e => {
+          setMessage(e.target.value);
+          typingMutation.mutate({ room, name, message: e.target.value });
+        }}
+      />
+
+      <button onClick={onAdd}>Send chat</button>
+
+      {!!typingName && <p>{`${typingName} typing "${typingMessage}"`}</p>}
+
       {messages.map((message, index) => (
         <p key={index}>{message}</p>
       ))}
