@@ -4,7 +4,7 @@ import { CreateWSSContextFnOptions } from '@trpc/server/adapters/ws';
 export function createContext(
   opts: CreateHTTPContextOptions | CreateWSSContextFnOptions
 ) {
-  return {};
+  return opts;
 }
 
 export type Context = Awaited<ReturnType<typeof createContext>>;

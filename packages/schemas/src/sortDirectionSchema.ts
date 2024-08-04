@@ -1,5 +1,5 @@
 import z from 'zod';
-import { sortDirections } from './sortDirections';
+import { sortDirections } from 'common';
 
 export const sortDirectionSchema = z.enum(sortDirections);
 

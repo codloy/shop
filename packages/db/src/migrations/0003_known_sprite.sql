@@ -1,0 +1,1 @@
+ALTER TABLE "attribute_options" RENAME COLUMN "name" TO "value";

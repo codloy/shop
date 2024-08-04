@@ -1,20 +1,12 @@
-import { addMutation } from './mutations/addMutation.';
-import { createPostMutation } from './mutations/createPostMutation';
-import { typingMutation } from './mutations/typingMutation';
-import { greetingQuery } from './queries/greetingQuery';
-import { router } from './router';
-import { addSubscription } from './subscriptions/addSubscription';
-import { randomNumberSubscription } from './subscriptions/randomNumberSubscription';
-import { typingSubscription } from './subscriptions/typingSubscription';
+import { trpc } from './trpc';
+import { mutationRouters } from './mutations';
+import { queryRouters } from './queries';
+import { subscriptionRouters } from './subscriptions';
 
-export const routers = router({
-  createPostMutation,
-  greetingQuery,
-  randomNumberSubscription,
-  addMutation,
-  addSubscription,
-  typingMutation,
-  typingSubscription,
-});
+export const routers = trpc.mergeRouters(
+  mutationRouters,
+  queryRouters,
+  subscriptionRouters
+);
 
 export type Routers = typeof routers;

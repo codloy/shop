@@ -4,10 +4,6 @@ import { ee } from '../ee';
 import { z } from 'zod';
 import { AddMutationSchema } from '../mutations/addMutation.';
 
-type Post = {
-  title: string;
-};
-
 const addSubscriptionSchema = z.object({
   room: z.string().min(1),
 });

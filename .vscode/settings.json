@@ -1,0 +1,11 @@
+{
+  "files.exclude": {
+    "node_modules": true,
+    "apps/web/.next": true,
+    "apps/web/next-env.d.ts": true,
+    "apps/web/.eslintrc.json": true,
+    "apps/web/node_modules": true,
+    // "apps/api/node_modules": true
+    "packages/schemas/node_modules": true
+  }
+}

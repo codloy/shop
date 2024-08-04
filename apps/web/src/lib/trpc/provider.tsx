@@ -4,7 +4,6 @@ import { type ReactNode } from 'react';
 import { trpc } from './trpc';
 import { trpcClient } from './client';
 import { queryClient } from '../query/client';
-import { QueryProvider } from '../query/provider';
 
 export type TRPCProviderProps = {
   children: ReactNode;
@@ -15,7 +14,7 @@ export function TRPCProvider(props: TRPCProviderProps) {
 
   return (
     <trpc.Provider client={trpcClient} queryClient={queryClient}>
-      <QueryProvider>{children}</QueryProvider>
+      {children}
     </trpc.Provider>
   );
 }

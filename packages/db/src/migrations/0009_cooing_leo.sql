@@ -1,0 +1,1 @@
+ALTER TABLE "store_branches" ALTER COLUMN "store_id" SET NOT NULL;
