@@ -5,23 +5,13 @@ import { publicProcedure } from './publicProcedure';
 
 export const accountProcedure = publicProcedure.use(
   async ({ next, ...opts }) => {
-    const { ctx } = opts;
+    const { ctx, type } = opts;
     const { req } = ctx;
 
-    const getQueryParam = (
-      url: string | undefined,
-      paramName: string
-    ): string | undefined => {
-      if (!url) return undefined;
-      const params = new URLSearchParams(url.split('?')[1]);
-      const param = params.get(paramName);
-      return param ?? undefined;
-    };
+    let token: string;
 
-    let token;
-
-    if (req instanceof Request) {
-      const authorizationHeader = req.headers.get('authorization');
+    if (type === 'mutation' || type === 'query') {
+      const authorizationHeader = req.headers.authorization;
 
       if (!authorizationHeader) {
         throw new TRPCError({
@@ -31,14 +21,27 @@ export const accountProcedure = publicProcedure.use(
       }
 
       token = authorizationHeader.split(' ')[1];
-    } else {
-      token = getQueryParam(ctx.req?.url, 'session');
+    }
+
+    if (type === 'subscription') {
+      if (!req.url) {
+        throw new TRPCError({
+          code: 'UNAUTHORIZED',
+          message: 'Token not found',
+        });
+      }
+
+      if (typeof req.url === 'string') {
+        token = req.url.split('=')[1];
+      } else {
+        console.log(typeof req.url, req.url);
+      }
     }
 
     if (!token) {
       throw new TRPCError({
         code: 'UNAUTHORIZED',
-        message: 'No permission to access',
+        message: 'Token not found',
       });
     }
 

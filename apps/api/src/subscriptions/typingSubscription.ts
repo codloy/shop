@@ -1,8 +1,8 @@
 import { observable } from '@trpc/server/observable';
-import { trpc } from '../trpc';
 import { ee } from '../ee';
 import { z } from 'zod';
 import { TypingMutationSchema } from '../mutations/typingMutation';
+import { publicProcedure } from '../procedures';
 
 const typingSubscriptionSchema = z.object({
   room: z.string().min(1),
@@ -12,7 +12,7 @@ const typingSubscriptionSchema = z.object({
 
 export type TypingSubscriptionSchema = z.infer<typeof typingSubscriptionSchema>;
 
-export const typingSubscription = trpc.procedure
+export const typingSubscription = publicProcedure
   .input(typingSubscriptionSchema)
   .subscription(({ input }) =>
     observable<TypingMutationSchema>(emit => {
