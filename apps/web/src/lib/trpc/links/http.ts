@@ -3,7 +3,7 @@ import { httpLink } from '@trpc/client/links/httpLink';
 import { getAccessToken } from '../utils/getAccessToken';
 
 export const getHTTPLink = httpLink({
-  url: process.env.NEXT_PUBLIC_HTTP_URL || '',
+  url: process.env.NEXT_PUBLIC_TRPC_URL || '',
   fetch: async (input, init?) => {
     const fetch = getFetch();
 

@@ -1,8 +1,8 @@
-import { CreateHTTPContextOptions } from '@trpc/server/adapters/standalone';
+import { CreateExpressContextOptions } from '@trpc/server/adapters/express';
 import { CreateWSSContextFnOptions } from '@trpc/server/adapters/ws';
 
 export function createContext(
-  opts: CreateHTTPContextOptions | CreateWSSContextFnOptions
+  opts: CreateExpressContextOptions | CreateWSSContextFnOptions
 ) {
   return opts;
 }
