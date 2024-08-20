@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "common": "workspace:^",
+    "configs": "workspace:^",
     "zod": "^3.23.8"
   },
   "devDependencies": {

@@ -24,6 +24,7 @@
     "@trpc/client": "^10.45.0",
     "@trpc/react-query": "^10.45.0",
     "atoms": "workspace:^",
+    "common": "workspace:^",
     "dayjs": "^1.11.12",
     "jotai": "^2.9.1",
     "next": "14.2.5",

@@ -16,6 +16,9 @@ importers:
       bcryptjs:
         specifier: ^2.4.3
         version: 2.4.3
+      configs:
+        specifier: workspace:^
+        version: link:../../packages/configs
       cors:
         specifier: ^2.8.5
         version: 2.8.5
@@ -113,6 +116,9 @@ importers:
       atoms:
         specifier: workspace:^
         version: link:../../packages/atoms
+      common:
+        specifier: workspace:^
+        version: link:../../packages/common
       dayjs:
         specifier: ^1.11.12
         version: 1.11.12
@@ -216,6 +222,9 @@ importers:
       common:
         specifier: workspace:^
         version: link:../common
+      configs:
+        specifier: workspace:^
+        version: link:../configs
       zod:
         specifier: ^3.23.8
         version: 3.23.8

@@ -8,7 +8,7 @@ export const accountProcedure = publicProcedure.use(
     const { ctx, type } = opts;
     const { req } = ctx;
 
-    let token: string;
+    let token: string = '';
 
     if (type === 'mutation' || type === 'query') {
       const authorizationHeader = req.headers.authorization;

@@ -13,6 +13,7 @@
   "dependencies": {
     "@trpc/server": "^10.45.2",
     "bcryptjs": "^2.4.3",
+    "configs": "workspace:^",
     "cors": "^2.8.5",
     "db": "workspace:^",
     "dotenv": "^16.4.5",

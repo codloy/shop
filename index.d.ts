@@ -71,6 +71,7 @@ declare global {
   type StoreBranchTable = TStoreBranchTable;
   type StoreStatusEnum = TStoreStatusEnum;
   type StoreBranchStatusEnum = TStoreBranchStatusEnum;
+  // type SortDirection = 'asc' | 'desc';
 }
 
 export {};

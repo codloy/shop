@@ -2,6 +2,8 @@ export * from './checkAccountStatus';
 export * from './generateAccessToken';
 export * from './getIP';
 export * from './getPort';
+export * from './getProductCategoryBreadcrumb';
+export * from './getProductCategoryNested';
 export * from './getRolePermissions';
 export * from './isEmailExists';
 export * from './isPasswordEqual';
