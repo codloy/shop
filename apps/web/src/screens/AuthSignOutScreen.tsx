@@ -20,8 +20,8 @@ export function AuthSignOutScreen() {
     onSuccess() {
       enqueueSnackbar(t('Signed out'), { variant: 'success' });
     },
-    onError(error) {
-      enqueueSnackbar(error.message, { variant: 'error' });
+    onError({ message }) {
+      enqueueSnackbar(message, { variant: 'error' });
     },
     onSettled() {
       const _continue = searchParams.get('continue');

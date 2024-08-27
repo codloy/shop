@@ -6,13 +6,17 @@ import { ResourceLoading } from '@/lib/resource/components/ResourceLoading';
 import { ResourceError } from '@/lib/resource/components/ResourceError';
 import { ResourceEmpty } from '@/lib/resource/components/ResourceEmpty';
 import { HomeProductSellCard } from '@/cards';
+import { useParams } from 'next/navigation';
 
 export type HomeSellProductsGridProps =
-  ResourceProps<HomeSellProductsSortableColumn> & {
-    categorySlugs: string[];
-  };
+  ResourceProps<HomeSellProductsSortableColumn>;
+
+type HomeSellProductsGridParams = {
+  categorySlugs?: string[];
+};
 
 export function HomeSellProductsGrid(props: HomeSellProductsGridProps) {
+  const { categorySlugs = [] } = useParams<HomeSellProductsGridParams>();
   const {
     // source,
     // selectedIds,
@@ -31,7 +35,6 @@ export function HomeSellProductsGrid(props: HomeSellProductsGridProps) {
     // setSortColumn,
     sortDirection,
     // setSortDirection,
-    categorySlugs,
   } = props;
   const { data, isLoading, isError, error } =
     trpc.homeSellProductsQuery.useQuery({

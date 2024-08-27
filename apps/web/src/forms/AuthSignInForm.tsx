@@ -8,7 +8,7 @@ import {
   authSignInSchemaDefaultValues,
 } from 'schemas';
 import { trpc } from '@/lib/trpc/trpc';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Controller } from 'react-hook-form';
 import { Button, Grid, TextField, Typography } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
@@ -24,6 +24,7 @@ export function AuthSignInForm() {
     defaultValues: authSignInSchemaDefaultValues,
   });
   const { success, error, loading, setId, close } = useNotify();
+  const searchParams = useSearchParams();
   const setAccount = useSetAtom(accountAtom);
   const signIn = trpc.authSignInMutation.useMutation({
     onSuccess(data) {
@@ -43,7 +44,9 @@ export function AuthSignInForm() {
         email: data.email,
       });
 
-      router.push('/');
+      const _continue = searchParams.get('continue');
+
+      router.push(_continue ? _continue : '/');
     },
     onError({ message }) {
       error(message);

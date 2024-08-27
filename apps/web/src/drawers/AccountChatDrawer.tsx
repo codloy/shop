@@ -45,11 +45,6 @@ export function AccountChatDrawer(props: AccountChatDrawerProps) {
       onData(message) {
         setMessages(m => [...m, message]);
       },
-      onError(err) {
-        console.error('Subscription error:', err);
-        // we might have missed a message - invalidate cache
-        // utils.post.infinite.invalidate();
-      },
     }
   );
 

@@ -16,6 +16,7 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { useI18n } from '@/lib/i18n/client';
 import { showAllCategoryOption } from '@/consts';
 import Link from 'next/link';
+import { useParams } from 'next/navigation';
 
 export type NestedCategory = {
   id: string;
@@ -26,20 +27,12 @@ export type NestedCategory = {
   categories: NestedCategory[];
 };
 
-export type TestProps = {
-  categories: NestedCategory[];
-  depth: number;
-  categorySlugs: string[];
-  productType: ProductTypeEnum;
+type HomeCategoriesListParams = {
+  categorySlugs?: string[];
 };
 
-export type HomeCategoriesListProps = {
-  categorySlugs: string[];
-  productType: ProductTypeEnum;
-};
-
-export function HomeCategoriesList(props: HomeCategoriesListProps) {
-  const { categorySlugs, productType } = props;
+export function HomeCategoriesList() {
+  const { categorySlugs = [] } = useParams<HomeCategoriesListParams>();
   const { isError, error, data } = trpc.homeCategoryNestedQuery.useQuery({
     slugs: categorySlugs,
   });
@@ -54,7 +47,6 @@ export function HomeCategoriesList(props: HomeCategoriesListProps) {
             categorySlugs={categorySlugs}
             categories={data?.results || []}
             depth={1}
-            productType={productType}
           />
         </Fragment>
       )}
@@ -62,9 +54,20 @@ export function HomeCategoriesList(props: HomeCategoriesListProps) {
   );
 }
 
+export type TestProps = {
+  categories: NestedCategory[];
+  depth: number;
+  categorySlugs: string[];
+};
+
+export type TestPropsParams = {
+  productType: string;
+};
+
 function Test(props: TestProps) {
+  const { productType = 'sell' } = useParams<TestPropsParams>();
   const t = useI18n();
-  const { categories, depth, categorySlugs, productType } = props;
+  const { categories, depth, categorySlugs } = props;
 
   return (
     <List disablePadding>
@@ -107,7 +110,7 @@ function Test(props: TestProps) {
           >
             <ListItemButton
               LinkComponent={Link}
-              href={`/categories/${productType.toLowerCase()}/${category.href}`}
+              href={`/categories/${productType}/${category.href}`}
               sx={{ borderRadius: 0, p: 0.4, pl: `${depth * 6}px` }}
               disabled={categorySlugs.includes(category.slug)}
             >
@@ -133,7 +136,6 @@ function Test(props: TestProps) {
               categorySlugs={categorySlugs}
               categories={category.categories}
               depth={depth + 1}
-              productType={productType}
             />
           )}
         </Fragment>

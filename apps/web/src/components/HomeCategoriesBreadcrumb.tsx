@@ -6,14 +6,15 @@ import { useI18n } from '@/lib/i18n/client';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import Link from 'next/link';
 import CottageIcon from '@mui/icons-material/Cottage';
+import { useParams } from 'next/navigation';
 
-export type HomeCategoriesBreadcrumbProps = {
-  categorySlugs: string[];
+type HomeCategoriesBreadcrumbParams = {
+  categorySlugs?: string[];
 };
 
-export function HomeCategoriesBreadcrumb(props: HomeCategoriesBreadcrumbProps) {
+export function HomeCategoriesBreadcrumb() {
   const t = useI18n();
-  const { categorySlugs } = props;
+  const { categorySlugs = [] } = useParams<HomeCategoriesBreadcrumbParams>();
   const { data } = trpc.homeCategoryBreadcrumbQuery.useQuery({
     categorySlugs,
   });

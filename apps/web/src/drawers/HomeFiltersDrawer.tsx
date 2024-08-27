@@ -12,12 +12,7 @@ import {
   HomeFilterProductCategoriesForm,
 } from '@/forms';
 
-export type HomeFiltersDrawerProps = {
-  categorySlugs: string[];
-};
-
-export function HomeFiltersDrawer(props: HomeFiltersDrawerProps) {
-  const { categorySlugs } = props;
+export function HomeFiltersDrawer() {
   const homeFiltersDrawerWidth = useAtomValue(homeFiltersDrawerWidthAtom);
   const [homeFiltersDrawerOpen, setHomeFiltersDrawerOpen] = useAtom(
     homeFiltersDrawerOpenAtom
@@ -61,7 +56,7 @@ export function HomeFiltersDrawer(props: HomeFiltersDrawerProps) {
             <HomeFilterProductDeliveryOptionsForm />
             <HomeFilterProductStatusesForm />
             <HomeFilterProductTypesForm />
-            <HomeFilterProductCategoriesForm categorySlugs={categorySlugs} />
+            <HomeFilterProductCategoriesForm />
           </Stack>
         </List>
       </Drawer>

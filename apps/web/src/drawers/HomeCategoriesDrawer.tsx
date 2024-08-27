@@ -10,13 +10,7 @@ import { Logo } from '@/components/Logo';
 import { HomeCategoriesList } from '@/lists';
 import { FilterList } from '@/components/FilterList';
 
-export type HomeCategoriesDrawerProps = {
-  categorySlugs: string[];
-  productType: ProductTypeEnum;
-};
-
-export function HomeCategoriesDrawer(props: HomeCategoriesDrawerProps) {
-  const { categorySlugs, productType } = props;
+export function HomeCategoriesDrawer() {
   const homeCategoriesDrawerWidth = useAtomValue(homeCategoriesDrawerWidthAtom);
   const [homeCategoriesDrawerOpen, setHomeCategoriesDrawerOpen] = useAtom(
     homeCategoriesDrawerOpenAtom
@@ -58,10 +52,7 @@ export function HomeCategoriesDrawer(props: HomeCategoriesDrawerProps) {
         <Divider />
         <FilterList />
         <Divider />
-        <HomeCategoriesList
-          productType={productType}
-          categorySlugs={categorySlugs}
-        />
+        <HomeCategoriesList />
       </Drawer>
     </Box>
   );

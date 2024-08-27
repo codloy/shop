@@ -6,18 +6,14 @@ import { HomeAppBar } from '@/appBars';
 import { HomeContainer } from '@/containers';
 import { HomeBottomNavigation } from '@/components';
 import { useAtomValue } from 'jotai';
-import { homeCategoriesDrawerOpenAtom } from 'atoms';
-import { HomeCategoriesDrawer } from '@/drawers';
+import { authSignInDrawerAtom, homeCategoriesDrawerOpenAtom } from 'atoms';
+import { HomeCategoriesDrawer, AuthSignInDrawer } from '@/drawers';
 
-export type HomeFrameProps = PropsWithChildren<{
-  categorySlugs: string[];
-  productType: ProductTypeEnum;
-}>;
+export type HomeFrameProps = PropsWithChildren<{}>;
 
 export function HomeFrame(props: HomeFrameProps) {
-  const { categorySlugs, productType } = props;
-
   const { children } = props;
+  const authSignInDrawer = useAtomValue(authSignInDrawerAtom);
   const theme = useTheme();
   const isXS = useMediaQuery(theme.breakpoints.only('xs'));
   const categoryDrawer = useAtomValue(homeCategoriesDrawerOpenAtom);
@@ -28,12 +24,9 @@ export function HomeFrame(props: HomeFrameProps) {
       <HomeContainer>{children}</HomeContainer>
       {isXS && <HomeBottomNavigation />}
 
-      {categoryDrawer && (
-        <HomeCategoriesDrawer
-          categorySlugs={categorySlugs}
-          productType={productType}
-        />
-      )}
+      {categoryDrawer && <HomeCategoriesDrawer />}
+
+      {authSignInDrawer.open && <AuthSignInDrawer />}
     </Box>
   );
 }

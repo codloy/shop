@@ -52,7 +52,7 @@ export function Logo(props: LogoProps) {
       >
         <ShoppingBagIcon />
         <Typography>codloy.shop</Typography>
-        <Typography variant='button'>
+        <Typography>
           {isXS && 'XS'}
           {isSM && 'SM'}
           {isMD && 'MD'}

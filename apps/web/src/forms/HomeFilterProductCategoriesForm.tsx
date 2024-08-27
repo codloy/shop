@@ -15,15 +15,15 @@ import {
   Typography,
 } from '@mui/material';
 import { homeFiltersCheckboxGap } from '@/consts';
+import { useParams } from 'next/navigation';
 
-export type HomeFilterProductCategoriesFormProps = {
-  categorySlugs: string[];
+type HomeFilterProductCategoriesFormParams = {
+  categorySlugs?: string[];
 };
 
-export function HomeFilterProductCategoriesForm(
-  props: HomeFilterProductCategoriesFormProps
-) {
-  const { categorySlugs } = props;
+export function HomeFilterProductCategoriesForm() {
+  const { categorySlugs = [] } =
+    useParams<HomeFilterProductCategoriesFormParams>();
   const { isLoading, isError, error, data } =
     trpc.homeFilterProductCategoriesQuery.useQuery({
       slugs: categorySlugs,

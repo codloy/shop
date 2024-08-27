@@ -61,7 +61,7 @@ export function HomeSellProductScreen(props: HomeSellProductScreenProps) {
   };
 
   return (
-    <HomeFrame categorySlugs={[]} productType='Sell'>
+    <HomeFrame>
       <Box sx={{ p: 2 }}>
         <HomeSellProductBreadcrumb productSlug={productSlug} />
       </Box>

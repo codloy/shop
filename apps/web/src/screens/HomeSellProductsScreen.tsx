@@ -16,42 +16,49 @@ import {
   HomeFilterProductTypesForm,
 } from '@/forms';
 
-export type HomeSellProductsScreenProps = {
-  categorySlugs?: string[];
-};
-
-export function HomeSellProductsScreen(props: HomeSellProductsScreenProps) {
-  const { categorySlugs = [] } = props;
+export function HomeSellProductsScreen() {
   const homeSellProductConfig = useHomeSellProductConfig();
 
   return (
-    <HomeFrame categorySlugs={categorySlugs} productType='Sell'>
+    <HomeFrame>
       <Grid container spacing={2}>
         <Grid item xs={12}>
-          <HomeCategoriesBreadcrumb categorySlugs={categorySlugs} />
+          <HomeCategoriesBreadcrumb />
         </Grid>
-        <Grid item xl={2}>
-          <HomeCategoriesList
-            productType='Sell'
-            categorySlugs={categorySlugs}
-          />
+        <Grid
+          item
+          xl={2}
+          lg={2}
+          md={0}
+          sm={0}
+          xs={0}
+          sx={{ display: { xs: 'none', lg: 'block' } }}
+        >
+          <HomeCategoriesList />
         </Grid>
-        <Grid item xl={8}>
+        <Grid item xl={8} lg={8} md={10} sm={12} xs={12}>
           <HomeSellProductsGrid
             source='manage'
-            categorySlugs={categorySlugs || []}
             selectMultiple={false}
             {...homeSellProductConfig}
           />
         </Grid>
-        <Grid item xl={2}>
+        <Grid
+          item
+          xl={2}
+          lg={2}
+          md={2}
+          sm={0}
+          xs={0}
+          sx={{ display: { xs: 'none', md: 'block' } }}
+        >
           <Stack spacing={2}>
             <HomeFilterProductAvailabilitiesForm />
             <HomeFilterProductConditionsForm />
             <HomeFilterProductDeliveryOptionsForm />
             <HomeFilterProductStatusesForm />
             <HomeFilterProductTypesForm />
-            <HomeFilterProductCategoriesForm categorySlugs={categorySlugs} />
+            <HomeFilterProductCategoriesForm />
           </Stack>
         </Grid>
       </Grid>

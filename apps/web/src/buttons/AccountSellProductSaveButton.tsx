@@ -7,6 +7,7 @@ import { useSnackbar } from 'notistack';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { MouseEvent } from 'react';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { usePathname, useRouter } from 'next/navigation';
 
 export type AccountSellProductSaveButtonProps = {
   sellProductId: string;
@@ -18,6 +19,8 @@ export function AccountSellProductSaveButton(
 ) {
   const { sellProductId, iconButton = false } = props;
   const t = useI18n();
+  const router = useRouter();
+  const pathname = usePathname();
   const { enqueueSnackbar } = useSnackbar();
   const save = trpc.accountSellProductSaveMutation.useMutation({
     onSuccess() {
@@ -27,6 +30,13 @@ export function AccountSellProductSaveButton(
 
       check.refetch();
     },
+    onError(error) {
+      if (error.data?.code === 'UNAUTHORIZED') {
+        enqueueSnackbar(t('Энэ үйлдлийг хийхийн тулд эхлээд нэвтэрнэ үү'));
+
+        router.push(`/auth/sign-in?continue=${encodeURIComponent(pathname)}`);
+      }
+    },
   });
   const remove = trpc.accountSellProductSaveDeleteMutation.useMutation({
     onSuccess() {
@@ -35,6 +45,13 @@ export function AccountSellProductSaveButton(
       });
 
       check.refetch();
+    },
+    onError(error) {
+      if (error.data?.code === 'UNAUTHORIZED') {
+        enqueueSnackbar(t('Энэ үйлдлийг хийхийн тулд эхлээд нэвтэрнэ үү'));
+
+        router.push(`/auth/sign-in?continue=${encodeURIComponent(pathname)}`);
+      }
     },
   });
   const check = trpc.accountSellProductSaveCheckQuery.useQuery({
@@ -70,6 +87,7 @@ export function AccountSellProductSaveButton(
       </Button>
     );
   }
+
   if (iconButton) {
     return (
       <IconButton onClick={onSave}>
