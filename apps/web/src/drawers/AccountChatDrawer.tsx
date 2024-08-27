@@ -26,15 +26,7 @@ export function AccountChatDrawer(props: AccountChatDrawerProps) {
   const t = useI18n();
   const [open, setOpen] = useAtom(accountChatDrawerOpenAtom);
   const [width] = useAtom(accountChatDrawerWidthAtom);
-  const [messages, setMessages] = useState<
-    {
-      id: string;
-      createdAt: string;
-      message: string;
-      chatId: string;
-      senderId: string;
-    }[]
-  >([]);
+  const [messages, setMessages] = useState<ChatMessageTable[]>([]);
   const { isLoading, isError, error, data, refetch } =
     trpc.accountChatQuery.useQuery(
       {

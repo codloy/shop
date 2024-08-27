@@ -30,14 +30,16 @@ export type TestProps = {
   categories: NestedCategory[];
   depth: number;
   categorySlugs: string[];
+  productType: ProductTypeEnum;
 };
 
 export type HomeCategoriesListProps = {
   categorySlugs: string[];
+  productType: ProductTypeEnum;
 };
 
 export function HomeCategoriesList(props: HomeCategoriesListProps) {
-  const { categorySlugs } = props;
+  const { categorySlugs, productType } = props;
   const { isError, error, data } = trpc.homeCategoryNestedQuery.useQuery({
     slugs: categorySlugs,
   });
@@ -52,6 +54,7 @@ export function HomeCategoriesList(props: HomeCategoriesListProps) {
             categorySlugs={categorySlugs}
             categories={data?.results || []}
             depth={1}
+            productType={productType}
           />
         </Fragment>
       )}
@@ -61,7 +64,7 @@ export function HomeCategoriesList(props: HomeCategoriesListProps) {
 
 function Test(props: TestProps) {
   const t = useI18n();
-  const { categories, depth, categorySlugs } = props;
+  const { categories, depth, categorySlugs, productType } = props;
 
   return (
     <List disablePadding>
@@ -104,7 +107,7 @@ function Test(props: TestProps) {
           >
             <ListItemButton
               LinkComponent={Link}
-              href={`/categories/${category.href}`}
+              href={`/categories/${productType.toLowerCase()}/${category.href}`}
               sx={{ borderRadius: 0, p: 0.4, pl: `${depth * 6}px` }}
               disabled={categorySlugs.includes(category.slug)}
             >
@@ -130,6 +133,7 @@ function Test(props: TestProps) {
               categorySlugs={categorySlugs}
               categories={category.categories}
               depth={depth + 1}
+              productType={productType}
             />
           )}
         </Fragment>

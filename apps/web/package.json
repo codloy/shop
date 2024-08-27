@@ -25,7 +25,9 @@
     "@trpc/react-query": "^10.45.0",
     "atoms": "workspace:^",
     "common": "workspace:^",
+    "configs": "workspace:^",
     "dayjs": "^1.11.12",
+    "db": "workspace:^",
     "jotai": "^2.9.1",
     "next": "14.2.5",
     "next-international": "^1.2.4",
@@ -34,6 +36,8 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.52.2",
+    "react-swipeable-views": "^0.14.0",
+    "react-swipeable-views-utils": "^0.14.0",
     "schemas": "workspace:^",
     "superjson": "^2.2.1",
     "types": "workspace:^"
@@ -42,6 +46,8 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/react-swipeable-views": "^0.13.5",
+    "@types/react-swipeable-views-utils": "^0.13.7",
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
     "typescript": "^5"

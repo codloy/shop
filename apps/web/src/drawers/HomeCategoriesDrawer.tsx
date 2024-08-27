@@ -12,10 +12,11 @@ import { FilterList } from '@/components/FilterList';
 
 export type HomeCategoriesDrawerProps = {
   categorySlugs: string[];
+  productType: ProductTypeEnum;
 };
 
 export function HomeCategoriesDrawer(props: HomeCategoriesDrawerProps) {
-  const { categorySlugs } = props;
+  const { categorySlugs, productType } = props;
   const homeCategoriesDrawerWidth = useAtomValue(homeCategoriesDrawerWidthAtom);
   const [homeCategoriesDrawerOpen, setHomeCategoriesDrawerOpen] = useAtom(
     homeCategoriesDrawerOpenAtom
@@ -57,7 +58,10 @@ export function HomeCategoriesDrawer(props: HomeCategoriesDrawerProps) {
         <Divider />
         <FilterList />
         <Divider />
-        <HomeCategoriesList categorySlugs={categorySlugs} />
+        <HomeCategoriesList
+          productType={productType}
+          categorySlugs={categorySlugs}
+        />
       </Drawer>
     </Box>
   );

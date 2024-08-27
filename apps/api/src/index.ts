@@ -13,7 +13,7 @@ app.use(
   cors({
     credentials: true,
     allowedHeaders: ['Content-Type', 'Authorization', 'Referer', 'User-Agent'],
-    origin: 'http://localhost:3000',
+    origin: ['http://localhost:3000', 'http://localhost:3001'],
   })
 );
 
