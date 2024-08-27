@@ -8,6 +8,7 @@ export * from './accountChatsDrawerWidthAtom';
 export * from './accountChatSelectedIdAtom';
 export * from './accountMenuAtom';
 export * from './accountSellProductCommentCreateAtom';
+export * from './authSignInDrawerAtom';
 export * from './homeCategoriesDrawerAtom';
 export * from './homeCategoriesDrawerOpenAtom';
 export * from './homeCategoriesDrawerWidthAtom';
