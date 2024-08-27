@@ -1,11 +1,17 @@
 {
   "files.exclude": {
     "node_modules": true,
+    "pnpm-lock.yaml": true,
     "apps/web/.next": true,
     "apps/web/next-env.d.ts": true,
     "apps/web/.eslintrc.json": true,
     "apps/web/node_modules": true,
-    // "apps/api/node_modules": true
-    "packages/schemas/node_modules": true
+    "apps/api/node_modules": true,
+    "packages/atoms/node_modules": true,
+    "packages/common/node_modules": true,
+    "packages/configs/node_modules": true,
+    "packages/db/node_modules": true,
+    "packages/schemas/node_modules": true,
+    "packages/types/node_modules": true
   }
 }

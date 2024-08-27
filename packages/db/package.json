@@ -5,14 +5,24 @@
   "main": "src/index.ts",
   "scripts": {
     "build": "rm -rf dist && tsc",
-    "ts": "tsc"
+    "ts": "tsc",
+    "up": "drizzle-kit up",
+    "generate": "drizzle-kit generate",
+    "push": "drizzle-kit push",
+    "migrate": "pnpm --filter db generate && pnpm --filter db push",
+    "studio": "drizzle-kit studio --host 0.0.0.0 --port 3000 --verbose",
+    "drop": "drizzle-kit drop",
+    "seed": "tsx ./src/seed/run.ts"
   },
   "dependencies": {
-    "drizzle-orm": "^0.30.6",
-    "postgres": "^3.4.4"
+    "common": "workspace:^",
+    "drizzle-orm": "^0.32.1",
+    "postgres": "^3.4.4",
+    "uuid": "^10.0.0"
   },
   "devDependencies": {
-    "drizzle-kit": "0.21.0",
+    "drizzle-kit": "0.24.2",
+    "tsx": "^4.16.2",
     "typescript": "^5"
   }
 }

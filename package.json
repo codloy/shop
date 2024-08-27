@@ -1,12 +1,8 @@
 {
-  "name": "marketplace",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "shop",
+  "version": "0.1.0",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+    "dev": "pnpm -r dev",
+    "ts": "pnpm -r ts"
+  }
 }
