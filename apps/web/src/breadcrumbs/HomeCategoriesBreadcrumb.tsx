@@ -7,14 +7,17 @@ import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import Link from 'next/link';
 import CottageIcon from '@mui/icons-material/Cottage';
 import { useParams } from 'next/navigation';
+import { DEFAULT_PRODUCT_TYPE } from '@/consts';
 
 type HomeCategoriesBreadcrumbParams = {
   categorySlugs?: string[];
+  productType?: string;
 };
 
 export function HomeCategoriesBreadcrumb() {
   const t = useI18n();
-  const { categorySlugs = [] } = useParams<HomeCategoriesBreadcrumbParams>();
+  const { categorySlugs = [], productType = DEFAULT_PRODUCT_TYPE } =
+    useParams<HomeCategoriesBreadcrumbParams>();
   const { data } = trpc.homeCategoryBreadcrumbQuery.useQuery({
     categorySlugs,
   });
@@ -35,7 +38,7 @@ export function HomeCategoriesBreadcrumb() {
               disabled={isLastElement}
               key={id}
               LinkComponent={Link}
-              href={`/categories/${result.href}`}
+              href={`/categories/${productType}/${result.href}`}
               variant='text'
               color='inherit'
               sx={{ textTransform: 'none' }}

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { HomeFrame } from '@/frames';
-import { HomeCategoriesBreadcrumb } from '@/components';
+import { HomeCategoriesBreadcrumb } from '@/breadcrumbs';
 import { useHomeSellProductConfig } from '@/hooks';
 import { HomeSellProductsGrid } from '@/grids';
 import { Grid, Stack } from '@mui/material';

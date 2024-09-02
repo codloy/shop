@@ -20,7 +20,7 @@ import { autoPlay } from 'react-swipeable-views-utils';
 import { useState } from 'react';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import { formatAsCurrency, convertToTugrug } from '@/utils';
+import { formatAsCurrency, convertToTugrug } from 'common';
 import { HomeFrame } from '@/frames';
 import { HomeSellProductBreadcrumb } from '@/breadcrumbs';
 // import { HomeBuyProductCard } from '../../buy/card';

@@ -1,7 +1,7 @@
 'use client';
 
 import type { ProductCategoryTable, ProductImageTable, ProductTable } from 'db';
-import { convertToTugrug, formatAsCurrency } from '@/utils';
+import { convertToTugrug, formatAsCurrency } from 'common';
 import {
   CardActionArea,
   Paper,

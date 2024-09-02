@@ -4,7 +4,9 @@
     "module": "commonjs",
     "baseUrl": "src",
 
-    "noEmit": true
+    "noEmit": true,
+
+    "lib": ["ES2020"]
   },
   "include": ["."],
   "exclude": ["dist", "node_modules", "**/**.spec.ts"]

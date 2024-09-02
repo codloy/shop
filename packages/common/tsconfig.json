@@ -3,6 +3,7 @@
     "outDir": "dist",
     "module": "commonjs",
     "baseUrl": "src",
+    "lib": ["ES2020"],
 
     "noEmit": true
   },

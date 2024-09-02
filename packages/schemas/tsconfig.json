@@ -12,7 +12,9 @@
     "sourceMap": true,
     "esModuleInterop": true,
 
-    "noEmit": true
+    "noEmit": true,
+
+    "lib": ["ES2020"]
   },
   "include": ["src/**/*"]
 }

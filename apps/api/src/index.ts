@@ -37,7 +37,7 @@ http.listen(port, ip, () => {
 
   console.log('WEB:');
   console.log(`NEXT_PUBLIC_TRPC_URL="http://${ip}:${port}/trpc"`);
-  console.log(`NEXT_PUBLIC_HTTP_URL="http://${ip}:${port}"`);
+  console.log(`NEXT_PUBLIC_REST_URL="http://${ip}:${port}"`);
   console.log(`NEXT_PUBLIC_WSS_URL="ws://${ip}:${port}"`);
 });
 

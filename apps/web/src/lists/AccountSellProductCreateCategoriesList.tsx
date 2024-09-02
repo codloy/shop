@@ -13,32 +13,31 @@ import { ResourceError } from '@/lib/resource/components/ResourceError';
 import { Fragment } from 'react';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import { useI18n } from '@/lib/i18n/client';
-import { DEFAULT_PRODUCT_TYPE, showAllCategoryOption } from '@/consts';
-import Link from 'next/link';
-import { useParams } from 'next/navigation';
+import { NestedCategory } from 'db';
 
-export type NestedCategory = {
-  id: string;
-  name: string;
-  slug: string;
-  href: string;
-  isSelected: boolean;
+type TestProps = {
   categories: NestedCategory[];
+  depth: number;
+  categorySlugs: string[];
+  onCategorySlugs(categorySlugs: string[]): void;
+  fullResults: NestedCategory[];
 };
 
-type HomeCategoriesListParams = {
-  categorySlugs?: string[];
+export type AccountProductSellCreateSelectCategoryProps = {
+  categorySlugs: string[];
+  onCategorySlugs(categorySlugs: string[]): void;
 };
 
-export function HomeCategoriesList() {
-  const { categorySlugs = [] } = useParams<HomeCategoriesListParams>();
-  const { isError, error, data } = trpc.homeCategoryNestedQuery.useQuery({
+export function AccountProductSellCreateSelectCategory(
+  props: AccountProductSellCreateSelectCategoryProps
+) {
+  const { categorySlugs, onCategorySlugs } = props;
+  const { isError, error, data } = trpc.homeCategoryNested.useQuery({
     slugs: categorySlugs,
   });
 
   return (
-    <List>
+    <List disablePadding>
       {isError ? (
         <ResourceError error={error} />
       ) : (
@@ -47,6 +46,8 @@ export function HomeCategoriesList() {
             categorySlugs={categorySlugs}
             categories={data?.results || []}
             depth={1}
+            onCategorySlugs={onCategorySlugs}
+            fullResults={data?.results || []}
           />
         </Fragment>
       )}
@@ -54,53 +55,37 @@ export function HomeCategoriesList() {
   );
 }
 
-export type TestProps = {
-  categories: NestedCategory[];
-  depth: number;
-  categorySlugs: string[];
-};
-
-export type TestPropsParams = {
-  productType: string;
-};
-
 function Test(props: TestProps) {
-  const { productType = DEFAULT_PRODUCT_TYPE } = useParams<TestPropsParams>();
-  const t = useI18n();
-  const { categories, depth, categorySlugs } = props;
+  const { categories, depth, categorySlugs, onCategorySlugs, fullResults } =
+    props;
+  console.log({ categorySlugs });
+
+  function findCategoryPathBySlug(
+    categories: NestedCategory[],
+    slug: string
+  ): string[] {
+    for (let category of categories) {
+      // Include the current category's slug in the path
+      const currentPath = [category.slug];
+
+      if (category.slug === slug) {
+        // If the current category's slug matches, return the path
+        return currentPath;
+      } else if (category.categories.length > 0) {
+        // Recursively search in subcategories
+        const result = findCategoryPathBySlug(category.categories, slug);
+        if (result.length > 0) {
+          // If the category is found in the subcategories, prepend the current category's slug
+          return [category.slug, ...result];
+        }
+      }
+    }
+    // If the category is not found, return an empty array
+    return [];
+  }
 
   return (
     <List disablePadding>
-      {depth === 1 && showAllCategoryOption && (
-        <ListItem
-          disablePadding
-          sx={{ my: 0, borderRadius: 0 }}
-          selected={categorySlugs.length === 0}
-        >
-          <ListItemButton
-            LinkComponent={Link}
-            href={`/categories`}
-            sx={{ borderRadius: 0, p: 0.4, pl: `6px` }}
-            // disabled={parentId === null}
-          >
-            <ListItemIcon sx={{ minWidth: '22px' }}>
-              {/* {parentId === null ? (
-                <ArrowDropDownIcon color='primary' />
-              ) : (
-                <ArrowRightIcon />
-              )} */}
-            </ListItemIcon>
-            <ListItemText>
-              <Typography
-                variant='body2'
-                // color={parentId === null ? 'primary.main' : undefined}
-              >
-                {t('All')}
-              </Typography>
-            </ListItemText>
-          </ListItemButton>
-        </ListItem>
-      )}
       {categories.map(category => (
         <Fragment key={category.id}>
           <ListItem
@@ -109,10 +94,18 @@ function Test(props: TestProps) {
             // selected={parentId === category.id}
           >
             <ListItemButton
-              LinkComponent={Link}
-              href={`/categories/${productType}/${category.href}`}
+              onClick={() => {
+                const slugs = findCategoryPathBySlug(
+                  fullResults,
+                  category.slug
+                );
+
+                console.log(slugs);
+
+                onCategorySlugs(slugs);
+              }}
               sx={{ borderRadius: 0, p: 0.4, pl: `${depth * 6}px` }}
-              disabled={categorySlugs.includes(category.slug)}
+              // disabled={categorySlugs.includes(category.slug)}
             >
               <ListItemIcon sx={{ minWidth: '22px' }}>
                 {categorySlugs.includes(category.slug) ? (
@@ -136,6 +129,8 @@ function Test(props: TestProps) {
               categorySlugs={categorySlugs}
               categories={category.categories}
               depth={depth + 1}
+              onCategorySlugs={onCategorySlugs}
+              fullResults={fullResults}
             />
           )}
         </Fragment>
