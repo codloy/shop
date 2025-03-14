@@ -58,7 +58,7 @@ export const authSignUpMutation = publicProcedure
           phoneNumber: phoneNumber.toLowerCase(),
           password: hashPassword,
           createdAt: new Date(),
-          status: 'Approved',
+          // status: 'Approved',
         })
         .returning();
 

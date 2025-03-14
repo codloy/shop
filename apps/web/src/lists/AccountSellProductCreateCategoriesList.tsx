@@ -13,7 +13,7 @@ import { ResourceError } from '@/lib/resource/components/ResourceError';
 import { Fragment } from 'react';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import { NestedCategory } from 'db';
+import { NestedCategory } from './HomeCategoriesList';
 
 type TestProps = {
   categories: NestedCategory[];
