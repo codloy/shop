@@ -1,4 +1,5 @@
 export * from './attributeDatatypes';
+export * from './barterOptions';
 export * from './convertToMungu';
 export * from './convertToTugrug';
 export * from './formatAsCurrency';

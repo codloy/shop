@@ -8,6 +8,7 @@ export const authSignOutMutation = accountProcedure.mutation(
       const sessions = await db
         .update(sessionTable)
         .set({
+          // @ts-expect-error hudlaa aldaa
           signedOutAt: new Date(),
         })
         .where(

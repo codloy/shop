@@ -5,12 +5,13 @@ import {
   rolePermissionTable,
   roleTable,
 } from '../tables';
-import { db, and, eq } from '..';
+import { db } from '..';
 import { seedAccounts } from './account';
 import { seedRoles } from './role';
 import { seedProductCategories } from './product-category';
 import { randomUUID } from 'node:crypto';
 import { slug } from 'common';
+import { eq, and } from 'drizzle-orm';
 
 type SeedProductCategoryTable = ProductCategoryTable & {
   oldId: number;

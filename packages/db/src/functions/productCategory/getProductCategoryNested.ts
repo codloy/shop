@@ -1,4 +1,5 @@
-import { eq, db, isNull } from '../..';
+import { isNull, eq } from 'drizzle-orm';
+import { db } from '../..';
 import { ProductCategoryTable, productCategoryTable } from '../../tables';
 
 export type NestedCategory = {

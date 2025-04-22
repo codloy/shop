@@ -36,8 +36,6 @@ import {
 import { LoadingButton } from '@mui/lab';
 import AddIcon from '@mui/icons-material/Add';
 import { convertToMungu } from 'common';
-import { AccountSellProductCreateSelectCategory } from './categories-list';
-import { AccountSellProductCreateCategoriesBreadcrumb } from './categories-breadcrumb';
 import { slug } from '@/lib/slug';
 import { useAtom, useAtomValue } from 'jotai';
 import { accountSellProductCreateOptionAtom } from './option/atom';
@@ -52,6 +50,8 @@ import { CategoryAttributeDisplay } from './category-attribute-display';
 import { accountBuyProductsSelectDialogAtom } from '../../buy/select/atom';
 import { AccountBuyProductsSelectDialog } from '../../buy/select/dialog';
 import { AccountBuyProductCard } from '../../buy/card';
+import { AccountSellProductCreateSelectCategory } from '@/components/AccountSellProductCreateSelectCategory';
+import { AccountSellProductCreateCategoriesBreadcrumb } from '@/components/AccountSellProductCreateCategoriesBreadcrumb';
 
 export type AccountSellProductCreateFormProps = {
   onSuccess(): void;

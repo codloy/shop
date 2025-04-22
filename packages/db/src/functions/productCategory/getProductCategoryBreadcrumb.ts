@@ -1,4 +1,5 @@
-import { eq, db } from '../..';
+import { eq } from 'drizzle-orm';
+import { db } from '../..';
 import { productCategoryTable } from '../../tables';
 
 export type CategoryBreadcrumb = {

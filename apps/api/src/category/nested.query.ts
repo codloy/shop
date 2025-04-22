@@ -1,9 +1,9 @@
-import { homeCategoryNestedQuerySchema } from './schema';
-import { homeProcedure } from '../../procedure';
-import { getProductCategoryNested } from '@/lib/db/functions/productCategory/getProductCategoryNested';
 import { TRPCException } from '@/exception';
+import { homeCategoryNestedQuerySchema } from 'schemas';
+import { publicProcedure } from '@/procedures/publicProcedure';
+import { getProductCategoryNested } from '@/utils/getProductCategoryNested';
 
-export const homeCategoryNestedQuery = homeProcedure
+export const homeCategoryNestedQuery = publicProcedure
   .input(homeCategoryNestedQuerySchema)
   .query(async ({ input }) => {
     try {

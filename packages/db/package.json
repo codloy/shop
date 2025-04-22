@@ -1,11 +1,18 @@
 {
   "name": "db",
-  "private": true,
-  "version": "1.0.0",
-  "main": "src/index.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "scripts": {
-    "build": "rm -rf dist && tsc",
     "ts": "tsc",
+    "dev-old": "tsc --build --watch",
+    "dev": "tsx ./src/index.ts",
+    "build": "tsc",
     "up": "drizzle-kit up",
     "generate": "drizzle-kit generate",
     "push": "drizzle-kit push",

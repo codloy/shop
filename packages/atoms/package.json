@@ -1,15 +1,23 @@
 {
   "name": "atoms",
-  "private": true,
-  "version": "1.0.0",
-  "main": "src/index.ts",
-  "scripts": {
-    "ts": "tsc"
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
   },
-  "dependencies": {
-    "jotai": "^2.9.1"
+  "scripts": {
+    "ts": "tsc",
+    "dev": "tsc --build --watch",
+    "build": "tsc"
   },
   "devDependencies": {
     "typescript": "^5"
+  },
+  "dependencies": {
+    "jotai": "^2.9.1",
+    "db": "workspace:^"
   }
 }

@@ -1,5 +1,6 @@
 import { atom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
+import { PermissionEnum } from 'db';
 
 export type AccountAtom = {
   id: string;

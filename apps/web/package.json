@@ -40,6 +40,7 @@
     "react-swipeable-views": "^0.14.0",
     "react-swipeable-views-utils": "^0.14.0",
     "schemas": "workspace:^",
+    "slugify": "^1.6.6",
     "superjson": "^2.2.1",
     "types": "workspace:^"
   },

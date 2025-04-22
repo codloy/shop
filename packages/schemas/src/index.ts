@@ -5,6 +5,7 @@ export * from './accountChatSendSchema';
 export * from './accountChatSendSubscriptionSchema';
 export * from './accountChatsSchema';
 export * from './accountSellProductCommentCreateSchema';
+export * from './accountSellProductCreateOptionSchema';
 export * from './accountSellProductCreateSchema';
 export * from './accountSellProductSaveCheckSchema';
 export * from './accountSellProductSaveDeleteSchema';

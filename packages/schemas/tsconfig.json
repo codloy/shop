@@ -1,20 +1,19 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "es6",
     "rootDir": "src",
     "outDir": "dist",
-    "baseUrl": "./src",
-    "paths": {
-      "schemas/*": ["src/*"]
-    },
+    "composite": true,
     "declaration": true,
-    "sourceMap": true,
-    "esModuleInterop": true,
+    "module": "ESNext",
+    "target": "es2020",
+    "moduleResolution": "node",
+    "baseUrl": "src",
+    "lib": ["ES2020"],
+    "incremental": true,
+    "tsBuildInfoFile": ".tsbuildinfo"
 
-    "noEmit": true,
-
-    "lib": ["ES2020"]
+    // "noEmit": true
   },
-  "include": ["src/**/*"]
+  "include": ["src"],
+  "exclude": ["dist", "node_modules", "**/**.spec.ts"]
 }
